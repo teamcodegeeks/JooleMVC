@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JooleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Manufacture">
+          <Key>
+            <PropertyRef Name="ManufactureId" />
+          </Key>
+          <Property Name="ManufactureId" Type="int" Nullable="false" />
+          <Property Name="ManufactureIdName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ModelId" />
+          </Key>
+          <Property Name="ModelId" Type="int" Nullable="false" />
+          <Property Name="ModelName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SeriesId" Type="int" Nullable="false" />
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="ManufactureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModelType">
+          <Key>
+            <PropertyRef Name="ModelTypeId" />
+          </Key>
+          <Property Name="ModelTypeId" Type="int" Nullable="false" />
+          <Property Name="UseType" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Application" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MountingLocation" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Accessories" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ModelYear" Type="smallint" Nullable="false" />
+          <Property Name="ModelId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ModelTypeId" Type="int" Nullable="false" />
+          <Property Name="ModelId" Type="int" Nullable="false" />
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductSubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryId" />
+          </Key>
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="SubCategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Joole.dbo.ProductTechSpec' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ProductTechSpec">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="AirFlow" Type="smallint" />
+          <Property Name="PowerMin" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="PowerMax" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="OperatingVoltageMin" Type="smallint" />
+          <Property Name="OperatingVoltageMax" Type="smallint" />
+          <Property Name="FanSpeedMin" Type="smallint" />
+          <Property Name="FanSpeedMax" Type="smallint" />
+          <Property Name="NumOfFanSpeed" Type="tinyint" />
+          <Property Name="SoundAtMaxSpeed" Type="tinyint" />
+          <Property Name="FanSweepDiameter" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="HeightMin" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="HeightMax" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LevelOfSuction" Type="tinyint" />
+          <Property Name="Height" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="MaxRuntime" Type="smallint" />
+          <Property Name="LevelOfTemperature" Type="tinyint" />
+          <Property Name="Length" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="SeriesId" />
+          </Key>
+          <Property Name="SeriesId" Type="int" Nullable="false" />
+          <Property Name="SeriesName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="ManufactureId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Joole.dbo.SpecFilter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SpecFilter">
+          <Key>
+            <PropertyRef Name="SubCategoryId" />
+            <PropertyRef Name="PropertyName" />
+            <PropertyRef Name="MIN" />
+            <PropertyRef Name="MAX" />
+          </Key>
+          <Property Name="SubCategoryId" Type="int" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MIN" Type="int" Nullable="false" />
+          <Property Name="MAX" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="UserRoleId" Type="tinyint" Nullable="false" />
+          <Property Name="Picture" Type="varbinary(max)" />
+          <Property Name="RoleDescription" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <Association Name="Joole_FK_Category_SubCategpry">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ProductSubCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_FanDescription">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductTechSpec" Type="Self.ProductTechSpec" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductTechSpec">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Manufacture_Series">
+          <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="1" />
+          <End Role="Series" Type="Self.Series" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacture">
+              <PropertyRef Name="ManufactureId" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="ManufactureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Model_ModelTypeDetails">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ModelId" />
+            </Principal>
+            <Dependent Role="ModelType">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Model_Series">
+          <End Role="Series" Type="Self.Series" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="SeriesId" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Model_Subcatagory">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Product_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ModelId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Product_ModelType">
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelType">
+              <PropertyRef Name="ModelTypeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_ProductSubCategory_Model">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_SubCatagory_Filter">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="SpecFilter" Type="Self.SpecFilter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="SpecFilter">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Subcategory_Series">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="Series" Type="Self.Series" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JooleModelStoreContainer">
+          <EntitySet Name="Manufacture" EntityType="Self.Manufacture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Model" EntityType="Self.Model" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelType" EntityType="Self.ModelType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTechSpec" EntityType="Self.ProductTechSpec" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ProductTechSpec].[ProductId] AS [ProductId], 
+    [ProductTechSpec].[AirFlow] AS [AirFlow], 
+    [ProductTechSpec].[PowerMin] AS [PowerMin], 
+    [ProductTechSpec].[PowerMax] AS [PowerMax], 
+    [ProductTechSpec].[OperatingVoltageMin] AS [OperatingVoltageMin], 
+    [ProductTechSpec].[OperatingVoltageMax] AS [OperatingVoltageMax], 
+    [ProductTechSpec].[FanSpeedMin] AS [FanSpeedMin], 
+    [ProductTechSpec].[FanSpeedMax] AS [FanSpeedMax], 
+    [ProductTechSpec].[NumOfFanSpeed] AS [NumOfFanSpeed], 
+    [ProductTechSpec].[SoundAtMaxSpeed] AS [SoundAtMaxSpeed], 
+    [ProductTechSpec].[FanSweepDiameter] AS [FanSweepDiameter], 
+    [ProductTechSpec].[HeightMin] AS [HeightMin], 
+    [ProductTechSpec].[HeightMax] AS [HeightMax], 
+    [ProductTechSpec].[Weight] AS [Weight], 
+    [ProductTechSpec].[LevelOfSuction] AS [LevelOfSuction], 
+    [ProductTechSpec].[Height] AS [Height], 
+    [ProductTechSpec].[MaxRuntime] AS [MaxRuntime], 
+    [ProductTechSpec].[LevelOfTemperature] AS [LevelOfTemperature], 
+    [ProductTechSpec].[Length] AS [Length]
+    FROM [dbo].[ProductTechSpec] AS [ProductTechSpec]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="SpecFilter" EntityType="Self.SpecFilter" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SpecFilter].[SubCategoryId] AS [SubCategoryId], 
+    [SpecFilter].[PropertyName] AS [PropertyName], 
+    [SpecFilter].[MIN] AS [MIN], 
+    [SpecFilter].[MAX] AS [MAX]
+    FROM [dbo].[SpecFilter] AS [SpecFilter]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="Joole_FK_Category_SubCategpry" Association="Self.Joole_FK_Category_SubCategpry">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_FanDescription" Association="Self.Joole_FK_FanDescription">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductTechSpec" EntitySet="ProductTechSpec" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Manufacture_Series" Association="Self.Joole_FK_Manufacture_Series">
+            <End Role="Manufacture" EntitySet="Manufacture" />
+            <End Role="Series" EntitySet="Series" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Model_ModelTypeDetails" Association="Self.Joole_FK_Model_ModelTypeDetails">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="ModelType" EntitySet="ModelType" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Model_Series" Association="Self.Joole_FK_Model_Series">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Model_Subcatagory" Association="Self.Joole_FK_Model_Subcatagory">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="Model" EntitySet="Model" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Product_Model" Association="Self.Joole_FK_Product_Model">
+            <End Role="Model" EntitySet="Model" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Product_ModelType" Association="Self.Joole_FK_Product_ModelType">
+            <End Role="ModelType" EntitySet="ModelType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_ProductSubCategory_Model" Association="Self.Joole_FK_ProductSubCategory_Model">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_SubCatagory_Filter" Association="Self.Joole_FK_SubCatagory_Filter">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="SpecFilter" EntitySet="SpecFilter" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Subcategory_Series" Association="Self.Joole_FK_Subcategory_Series">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="Series" EntitySet="Series" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JooleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Manufacture">
+          <Key>
+            <PropertyRef Name="ManufactureId" />
+          </Key>
+          <Property Name="ManufactureId" Type="Int32" Nullable="false" />
+          <Property Name="ManufactureIdName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Series" Relationship="Self.Joole_FK_Manufacture_Series" FromRole="Manufacture" ToRole="Series" />
+        </EntityType>
+        <EntityType Name="Model">
+          <Key>
+            <PropertyRef Name="ModelId" />
+          </Key>
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
+          <Property Name="ModelName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeriesId" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ManufactureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ModelTypes" Relationship="Self.Joole_FK_Model_ModelTypeDetails" FromRole="Model" ToRole="ModelType" />
+          <NavigationProperty Name="Series" Relationship="Self.Joole_FK_Model_Series" FromRole="Model" ToRole="Series" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="Self.Joole_FK_Model_Subcatagory" FromRole="Model" ToRole="ProductSubCategory" />
+          <NavigationProperty Name="Products" Relationship="Self.Joole_FK_Product_Model" FromRole="Model" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ModelType">
+          <Key>
+            <PropertyRef Name="ModelTypeId" />
+          </Key>
+          <Property Name="ModelTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UseType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Application" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MountingLocation" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Accessories" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModelYear" Type="Int16" Nullable="false" />
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Model" Relationship="Self.Joole_FK_Model_ModelTypeDetails" FromRole="ModelType" ToRole="Model" />
+          <NavigationProperty Name="Products" Relationship="Self.Joole_FK_Product_ModelType" FromRole="ModelType" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModelTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ModelId" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Model" Relationship="Self.Joole_FK_Product_Model" FromRole="Product" ToRole="Model" />
+          <NavigationProperty Name="ModelType" Relationship="Self.Joole_FK_Product_ModelType" FromRole="Product" ToRole="ModelType" />
+          <NavigationProperty Name="ProductTechSpec" Relationship="Self.Joole_FK_FanDescription" FromRole="Product" ToRole="ProductTechSpec" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="Self.Joole_FK_ProductSubCategory_Model" FromRole="Product" ToRole="ProductSubCategory" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductSubCategories" Relationship="Self.Joole_FK_Category_SubCategpry" FromRole="ProductCategory" ToRole="ProductSubCategory" />
+        </EntityType>
+        <EntityType Name="ProductSubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryId" />
+          </Key>
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Models" Relationship="Self.Joole_FK_Model_Subcatagory" FromRole="ProductSubCategory" ToRole="Model" />
+          <NavigationProperty Name="Products" Relationship="Self.Joole_FK_ProductSubCategory_Model" FromRole="ProductSubCategory" ToRole="Product" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.Joole_FK_Category_SubCategpry" FromRole="ProductSubCategory" ToRole="ProductCategory" />
+          <NavigationProperty Name="SpecFilters" Relationship="Self.Joole_FK_SubCatagory_Filter" FromRole="ProductSubCategory" ToRole="SpecFilter" />
+          <NavigationProperty Name="Series" Relationship="Self.Joole_FK_Subcategory_Series" FromRole="ProductSubCategory" ToRole="Series" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="SeriesId" />
+          </Key>
+          <Property Name="SeriesId" Type="Int32" Nullable="false" />
+          <Property Name="SeriesName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="ManufactureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Manufacture" Relationship="Self.Joole_FK_Manufacture_Series" FromRole="Series" ToRole="Manufacture" />
+          <NavigationProperty Name="Models" Relationship="Self.Joole_FK_Model_Series" FromRole="Series" ToRole="Model" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="Self.Joole_FK_Subcategory_Series" FromRole="Series" ToRole="ProductSubCategory" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserRoleId" Type="Byte" Nullable="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="RoleDescription" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductTechSpec">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="AirFlow" Type="Int16" />
+          <Property Name="PowerMin" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="PowerMax" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="OperatingVoltageMin" Type="Int16" />
+          <Property Name="OperatingVoltageMax" Type="Int16" />
+          <Property Name="FanSpeedMin" Type="Int16" />
+          <Property Name="FanSpeedMax" Type="Int16" />
+          <Property Name="NumOfFanSpeed" Type="Byte" />
+          <Property Name="SoundAtMaxSpeed" Type="Byte" />
+          <Property Name="FanSweepDiameter" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="HeightMin" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="HeightMax" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LevelOfSuction" Type="Byte" />
+          <Property Name="Height" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="MaxRuntime" Type="Int16" />
+          <Property Name="LevelOfTemperature" Type="Byte" />
+          <Property Name="Length" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="Self.Joole_FK_FanDescription" FromRole="ProductTechSpec" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="SpecFilter">
+          <Key>
+            <PropertyRef Name="SubCategoryId" />
+            <PropertyRef Name="PropertyName" />
+            <PropertyRef Name="MIN" />
+            <PropertyRef Name="MAX" />
+          </Key>
+          <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="PropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MIN" Type="Int32" Nullable="false" />
+          <Property Name="MAX" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="Self.Joole_FK_SubCatagory_Filter" FromRole="SpecFilter" ToRole="ProductSubCategory" />
+        </EntityType>
+        <Association Name="Joole_FK_Manufacture_Series">
+          <End Role="Manufacture" Type="Self.Manufacture" Multiplicity="1" />
+          <End Role="Series" Type="Self.Series" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacture">
+              <PropertyRef Name="ManufactureId" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="ManufactureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Model_ModelTypeDetails">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ModelId" />
+            </Principal>
+            <Dependent Role="ModelType">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Model_Series">
+          <End Role="Series" Type="Self.Series" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="SeriesId" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Model_Subcatagory">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="Model" Type="Self.Model" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="Model">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Product_Model">
+          <End Role="Model" Type="Self.Model" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Model">
+              <PropertyRef Name="ModelId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Product_ModelType">
+          <End Role="ModelType" Type="Self.ModelType" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelType">
+              <PropertyRef Name="ModelTypeId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ModelTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_FanDescription">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductTechSpec" Type="Self.ProductTechSpec" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductTechSpec">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_ProductSubCategory_Model">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Category_SubCategpry">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ProductSubCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_SubCatagory_Filter">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="SpecFilter" Type="Self.SpecFilter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="SpecFilter">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Joole_FK_Subcategory_Series">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="1" />
+          <End Role="Series" Type="Self.Series" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="SubCategoryId" />
+            </Principal>
+            <Dependent Role="Series">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JooleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Manufactures" EntityType="Self.Manufacture" />
+          <EntitySet Name="Models" EntityType="Self.Model" />
+          <EntitySet Name="ModelTypes" EntityType="Self.ModelType" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductSubCategories" EntityType="Self.ProductSubCategory" />
+          <EntitySet Name="Series" EntityType="Self.Series" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="ProductTechSpecs" EntityType="Self.ProductTechSpec" />
+          <EntitySet Name="SpecFilters" EntityType="Self.SpecFilter" />
+          <AssociationSet Name="Joole_FK_Manufacture_Series" Association="Self.Joole_FK_Manufacture_Series">
+            <End Role="Manufacture" EntitySet="Manufactures" />
+            <End Role="Series" EntitySet="Series" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Model_ModelTypeDetails" Association="Self.Joole_FK_Model_ModelTypeDetails">
+            <End Role="Model" EntitySet="Models" />
+            <End Role="ModelType" EntitySet="ModelTypes" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Model_Series" Association="Self.Joole_FK_Model_Series">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="Model" EntitySet="Models" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Model_Subcatagory" Association="Self.Joole_FK_Model_Subcatagory">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+            <End Role="Model" EntitySet="Models" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Product_Model" Association="Self.Joole_FK_Product_Model">
+            <End Role="Model" EntitySet="Models" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Product_ModelType" Association="Self.Joole_FK_Product_ModelType">
+            <End Role="ModelType" EntitySet="ModelTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_FanDescription" Association="Self.Joole_FK_FanDescription">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductTechSpec" EntitySet="ProductTechSpecs" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_ProductSubCategory_Model" Association="Self.Joole_FK_ProductSubCategory_Model">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Category_SubCategpry" Association="Self.Joole_FK_Category_SubCategpry">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_SubCatagory_Filter" Association="Self.Joole_FK_SubCatagory_Filter">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+            <End Role="SpecFilter" EntitySet="SpecFilters" />
+          </AssociationSet>
+          <AssociationSet Name="Joole_FK_Subcategory_Series" Association="Self.Joole_FK_Subcategory_Series">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategories" />
+            <End Role="Series" EntitySet="Series" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JooleModelStoreContainer" CdmEntityContainer="JooleEntities">
+          <EntitySetMapping Name="Manufactures">
+            <EntityTypeMapping TypeName="JooleModel.Manufacture">
+              <MappingFragment StoreEntitySet="Manufacture">
+                <ScalarProperty Name="ManufactureId" ColumnName="ManufactureId" />
+                <ScalarProperty Name="ManufactureIdName" ColumnName="ManufactureIdName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Models">
+            <EntityTypeMapping TypeName="JooleModel.Model">
+              <MappingFragment StoreEntitySet="Model">
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="ModelName" ColumnName="ModelName" />
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="ManufactureId" ColumnName="ManufactureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModelTypes">
+            <EntityTypeMapping TypeName="JooleModel.ModelType">
+              <MappingFragment StoreEntitySet="ModelType">
+                <ScalarProperty Name="ModelTypeId" ColumnName="ModelTypeId" />
+                <ScalarProperty Name="UseType" ColumnName="UseType" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="MountingLocation" ColumnName="MountingLocation" />
+                <ScalarProperty Name="Accessories" ColumnName="Accessories" />
+                <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="JooleModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ModelTypeId" ColumnName="ModelTypeId" />
+                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="JooleModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSubCategories">
+            <EntityTypeMapping TypeName="JooleModel.ProductSubCategory">
+              <MappingFragment StoreEntitySet="ProductSubCategory">
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Series">
+            <EntityTypeMapping TypeName="JooleModel.Series">
+              <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+                <ScalarProperty Name="SeriesName" ColumnName="SeriesName" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="ManufactureId" ColumnName="ManufactureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="JooleModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTechSpecs">
+            <EntityTypeMapping TypeName="JooleModel.ProductTechSpec">
+              <MappingFragment StoreEntitySet="ProductTechSpec">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AirFlow" ColumnName="AirFlow" />
+                <ScalarProperty Name="PowerMin" ColumnName="PowerMin" />
+                <ScalarProperty Name="PowerMax" ColumnName="PowerMax" />
+                <ScalarProperty Name="OperatingVoltageMin" ColumnName="OperatingVoltageMin" />
+                <ScalarProperty Name="OperatingVoltageMax" ColumnName="OperatingVoltageMax" />
+                <ScalarProperty Name="FanSpeedMin" ColumnName="FanSpeedMin" />
+                <ScalarProperty Name="FanSpeedMax" ColumnName="FanSpeedMax" />
+                <ScalarProperty Name="NumOfFanSpeed" ColumnName="NumOfFanSpeed" />
+                <ScalarProperty Name="SoundAtMaxSpeed" ColumnName="SoundAtMaxSpeed" />
+                <ScalarProperty Name="FanSweepDiameter" ColumnName="FanSweepDiameter" />
+                <ScalarProperty Name="HeightMin" ColumnName="HeightMin" />
+                <ScalarProperty Name="HeightMax" ColumnName="HeightMax" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="LevelOfSuction" ColumnName="LevelOfSuction" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="MaxRuntime" ColumnName="MaxRuntime" />
+                <ScalarProperty Name="LevelOfTemperature" ColumnName="LevelOfTemperature" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecFilters">
+            <EntityTypeMapping TypeName="JooleModel.SpecFilter">
+              <MappingFragment StoreEntitySet="SpecFilter">
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="MIN" ColumnName="MIN" />
+                <ScalarProperty Name="MAX" ColumnName="MAX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

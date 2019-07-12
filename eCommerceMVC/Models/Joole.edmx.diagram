@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="54cf0fe4f14f4c87aaa3c5f804a28e1d" Name="Diagram1">
+        <EntityTypeShape EntityType="JooleModel.Manufacture" Width="1.5" PointX="6" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.Model" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.ModelType" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.Product" Width="1.5" PointX="10.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.ProductCategory" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.ProductSubCategory" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.Series" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.ProductTechSpec" Width="1.5" PointX="13" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleModel.SpecFilter" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Manufacture_Series" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Model_ModelTypeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Model_Series" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Model_Subcatagory" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Product_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Product_ModelType" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_FanDescription" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_ProductSubCategory_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Category_SubCategpry" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_SubCatagory_Filter" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleModel.Joole_FK_Subcategory_Series" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

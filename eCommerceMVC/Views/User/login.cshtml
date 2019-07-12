@@ -1,0 +1,105 @@
+﻿@model eCommerceMVC.Models.User
+
+@{
+    ViewBag.Title = "login";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="~/Content/login.css" type="text/css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" rel="stylesheet" />
+    <title>EnterCustomer</title>
+</head>
+<body>
+    <div>
+        <ul class="navBar">
+            <li>
+                <a href="#" class="signupLink">Sign Up</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="logo">
+        <img src="~/Images/linkinpark.png" alt="logo" />
+        <p>Building Product Selection Platform</p>
+    </div>
+
+    <div class="login">
+        <form action="@Url.Action("LoginUser", "User")" method="post">
+            <p>@ViewData["erroeinfo"]
+            </p>
+            <input name="UserName" class="form-control"
+                    type="text"
+                    placeholder="Username or Email" /><span class="fas fa-user loginspan"></span><br />
+            <input name="UserPassword" class="form-control"
+                   type="password"
+                   placeholder="Password" /><i class="fas fa-briefcase passspan"></i><br />
+            <input id="Submit1" class="btn btn-primary loginBtn" type="submit" value="Log In" />
+        </form>
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="loginModal"
+         data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                    </button>
+                    <h4 class="modal-title">Register as User</h4>
+                </div>
+                <div class="modal-body">
+                    <form  id="newregister" action="@Url.Action("Register", "User")" method="post">
+                        <div class="form-group">
+                            <label for="exampleInputImage">Image Preview</label>
+                            <br />
+                            <img src="~/Images/img_avatar.png" class="profileImage" />
+                            <br />
+                            <label for="exampleInputFile">File input</label>
+                            <input type="file" name="userpic" id="exampleInputFile">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text"
+                                   placeholder="User Name" name="newusername" id="inputUserName" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text"
+                                   placeholder="Email Id" name="newuseremail" id="inputEmail" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Password"
+                                   type="password" name="newuserpassword" id="inputPassword" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Confirm Password"
+                                   type="password" id="inputConfirmPassword" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" form="newregister">Sign</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+            $(document).ready(function () {
+                $(".signupLink").click(function () {
+                    $("#loginModal").modal('show');
+                });
+                $("#btnHideModal").click(function () {
+                    $("#loginModal").modal('hide');
+                });
+            });
+    </script>
+</body>
+</html>
+

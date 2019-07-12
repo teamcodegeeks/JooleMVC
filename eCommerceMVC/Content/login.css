@@ -1,0 +1,72 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    background-image: linear-gradient(#1fc8db, white);
+}
+
+.navBar li {
+    list-style: none;
+    float: right;
+    padding: 10px 40px;
+    cursor: pointer;
+}
+
+    .navBar li a {
+        text-decoration: none;
+        color: black;
+    }
+
+.logo {
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+
+    .logo img {
+        margin-top: 5%;
+        padding-left: 50px;
+    }
+
+    .logo p {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+.login {
+    padding-top: 20px;
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login input {
+    text-align: center;
+}
+
+.loginspan {
+    float: right;
+    margin-right: 10px;
+    margin-top: -23px;
+    position: relative;
+    z-index: 2;
+}
+
+.passspan {
+    float: right;
+    margin-right: 10px;
+    margin-top: -23px;
+    position: relative;
+    z-index: 2;
+}
+
+.loginBtn {
+    float: right;
+}
+
+.profileImage {
+    border-radius: 50%;
+    width: 100px;
+    background-color: grey;
+}
