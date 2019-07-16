@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductSummaryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\Joole.Context.cs">
       <AutoGen>True</AutoGen>
@@ -208,12 +209,28 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IManufactureRepository.cs" />
+    <Compile Include="Repository\IModelRepository.cs" />
+    <Compile Include="Repository\IModelTypeRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\IProductSubCategoryRepository.cs" />
+    <Compile Include="Repository\IProductTechSpecRepository.cs" />
+    <Compile Include="Repository\ISeriesRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\IProductCategoryRepository.cs" />
+    <Compile Include="Repository\ManufactureRepository.cs" />
+    <Compile Include="Repository\ModelRepository.cs" />
+    <Compile Include="Repository\ModelTypeRepository.cs" />
+    <Compile Include="Repository\ProductCategoryRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\ProductSubCategoryRepository.cs" />
+    <Compile Include="Repository\ProductTechSpecRepository.cs" />
+    <Compile Include="Repository\SeriesRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Service\ProductSummaryService.cs" />
     <Compile Include="Service\UserServicecs.cs" />
     <Compile Include="UoW\UoW.cs" />
+    <Compile Include="ViewModels\ProductSummary.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -221,6 +238,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\FanSummary.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -261,7 +279,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -276,9 +296,11 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
+    <Content Include="Views\ProductSummary\FanSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProductSummay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

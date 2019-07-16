@@ -1,0 +1,22 @@
+﻿body {
+}
+nav {
+    background-color:lightgrey;
+}
+.navbar-default .navbar-nav > li > a {
+    color:dodgerblue;
+}
+#bs-example-navbar-collapse-1 {
+    border-color:transparent;
+}
+.product_title {
+    margin-top: 40px;
+    font-size: 40px;
+    color:steelblue;
+}
+table {
+    margin-top: 5px;
+}
+.description {
+    background-color:#9d9d9d;
+}

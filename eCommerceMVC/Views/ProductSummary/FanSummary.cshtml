@@ -1,0 +1,158 @@
+﻿@model eCommerceMVC.ViewModels.ProductSummary
+
+@{
+    ViewBag.Title = "FanSummary";
+}
+
+
+<!DOCTYPE html>
+<head>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/FanSummary.css" type="text/css" rel="stylesheet" />
+</head>
+   
+<body>
+    @*<div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                @Html.ActionLink("ProductSummary", "ProductSummary")
+            </li>
+            <li class="nav-item active">
+                @Html.ActionLink("ProductDetails", "ProductDetails")
+            </li>
+        </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>*@
+    <nav class="navbar navbar-default">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("ProductSummary", "ProductSummary")</li>
+                <li>@Html.ActionLink("ProductDetails", "ProductDetails")</li>
+                <li>@Html.ActionLink("Product Documentation", "Product Documentation")</li>
+                <li>@Html.ActionLink("Contact", "Contact")</li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+    @*<ul>
+            <li class="navbar"> @Html.ActionLink("ProductSummary", "ProductSummary")</li>
+            <li class="navbar"> @Html.ActionLink("ProductDetails", "ProductDetails")</li>
+            <li class="navbar"> @Html.ActionLink("Product Documentation", "Product Documentation")</li>
+            <li class="navbar"> @Html.ActionLink("Contact", "Contact")</li>
+        </ul>*@
+    <div>
+        <div class="product_title">Product Summary</div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>
+                        DESCRIPTION
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td class="description">Manufacture</td>
+                    <td>@Model.MaunfactureIdName</td>
+                </tr>
+                <tr>
+                    <td class="description">Series</td>
+                    <td>@Model.SeriesName</td>
+                </tr>
+                <tr>
+                    <td class="description">Model</td>
+                    <td>@Model.ModelName</td>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                    <th>
+                        TYPE
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td class="description">Use Type</td>
+                    <td>@Model.UseType</td>
+                </tr>
+                <tr>
+                    <td class="description">Application</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="description">Mounting Location</td>
+                    <td>S3-150-S0-BC</td>
+                </tr>
+                <tr>
+                    <td class="description">Accessories</td>
+                    <td>S3-150-S0-BC</td>
+                </tr>
+                <tr>
+                    <td class="description">Model Year</td>
+                    <td>S3-150-S0-BC</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+                    <th>
+                        TECHNICAL SPECIFICATIONS
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td class="description">Air Flow(CFM)</td>
+                    <td>5,467</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="description">Power(W)</td>
+                    <td class=" description">Min</td>
+                    <td>1.95</td>
+                    <td class=" description">Max</td>
+                    <td>21.14</td>
+                </tr>
+                <tr>
+                    <td class="description">Power(W)</td>
+                    <td class=" description">Min</td>
+                    <td>1.95</td>
+                    <td class=" description">Max</td>
+                    <td>21.14</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>

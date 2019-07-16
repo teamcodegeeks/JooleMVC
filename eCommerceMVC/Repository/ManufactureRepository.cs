@@ -8,14 +8,14 @@ using eCommerceMVC.Repository;
 
 namespace eCommerceMVC.Repository
 {
-    public class ProductRepository:GenericRepository<Product>, IProductRepository
+    public class ManufactureRepository:GenericRepository<Manufacture>,IManufactureRepository
     {
         private JoojleEntities _dbcontext;
-        private DbSet<Product> dbset;
-        public ProductRepository(JoojleEntities dbcontext) : base(dbcontext)
+        private DbSet<Manufacture> dbset;
+        public ManufactureRepository(JoojleEntities dbcontext) : base(dbcontext)
         {
             this._dbcontext = dbcontext;
-            this.dbset = _dbcontext.Set<Product>();
+            this.dbset = _dbcontext.Set<Manufacture>();
         }
     }
 }

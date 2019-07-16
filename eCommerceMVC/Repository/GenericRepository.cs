@@ -7,14 +7,15 @@ using System.Data.Entity;
 using eCommerceMVC.Models;
 using System.Linq.Expressions;
 using eCommerceMVC.Repository;
+using System.Data.SqlClient;
 
 namespace eCommerceMVC.Repository
 {
     public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntity : class
     {
-        private JooleEntities _dbcontext;
+        private JoojleEntities _dbcontext;
         private DbSet<TEntity> dbset;
-        public GenericRepository(JooleEntities dbcontext) {
+        public GenericRepository(JoojleEntities dbcontext) {
             this._dbcontext = dbcontext;
             this.dbset = _dbcontext.Set<TEntity>();
         }
@@ -39,8 +40,17 @@ namespace eCommerceMVC.Repository
             if (orderBy != null) return orderBy(query).ToList();
             else return query.ToList();
         }
-        public void Insert(TEntity entity) {
-            dbset.Add(entity);
+        public bool Insert(TEntity entity) {
+            bool status = false;
+            try
+            {
+                dbset.Add(entity);
+                status = true;
+            }
+            catch (SqlException ex) {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            return status;
         }
         public void Delete(object id) {
             TEntity entityToDelete = dbset.Find(id);

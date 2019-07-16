@@ -7,12 +7,19 @@ using eCommerceMVC.Repository;
 
 namespace eCommerceMVC.UoW
 {
-    public class UnitofWork:IDisposable
+    public partial class UnitofWork:IDisposable
     {
-        private JooleEntities dbcontext;
+        private JoojleEntities dbcontext;
         private static UserRepository userrepository;
+        private static ManufactureRepository manufacturerepository;
+        private static ModelRepository modelrepository;
+        private static ModelTypeRepository modeltyperepository;
         private static ProductRepository productrepository;
-        public UnitofWork(JooleEntities dbcontext) {
+        private static ProductCategoryRepository productcategoryrepository;
+        private static ProductSubCategoryRepository productsubcategoryrepository;
+        private static ProductTechSpecRepository producttechspecrepository;
+        private static SeriesRepository seriesrepository;
+        public UnitofWork(JoojleEntities dbcontext) {
             this.dbcontext = dbcontext;
         }
         
@@ -25,6 +32,33 @@ namespace eCommerceMVC.UoW
                 return userrepository;
             }
         }
+        public ManufactureRepository ManufactureRepository
+        {
+            get {
+                if (manufacturerepository == null) {
+                    manufacturerepository = new ManufactureRepository(dbcontext);
+                }
+                return manufacturerepository;
+            }
+        }
+        public ModelRepository ModelRepository
+        {
+            get {
+                if (modelrepository == null) {
+                    modelrepository = new ModelRepository(dbcontext);
+                }
+                return modelrepository;
+            }
+        }
+        public ModelTypeRepository ModelTypeRepository
+        {
+            get{
+                if (modeltyperepository == null) {
+                    modeltyperepository = new ModelTypeRepository(dbcontext);
+                }
+                return modeltyperepository;
+            }
+        }
         public ProductRepository ProductRepository
         {
             get {
@@ -32,6 +66,42 @@ namespace eCommerceMVC.UoW
                     productrepository = new ProductRepository(dbcontext);
                 }
                 return productrepository;
+            }
+        }
+        public ProductCategoryRepository ProductCategoryRepository
+        {
+            get {
+                if (productcategoryrepository == null) {
+                    productcategoryrepository = new ProductCategoryRepository(dbcontext);
+                }
+                return productcategoryrepository;
+            }
+        }
+        public ProductSubCategoryRepository ProductSubCategoryRepository
+        {
+            get {
+                if (productsubcategoryrepository == null) {
+                    productsubcategoryrepository = new ProductSubCategoryRepository(dbcontext);
+                }
+                return productsubcategoryrepository;
+            }
+        }
+        public ProductTechSpecRepository ProductTechSpecRepository
+        {
+            get {
+                if (producttechspecrepository == null) {
+                    producttechspecrepository = new ProductTechSpecRepository(dbcontext);
+                }
+                return producttechspecrepository;
+            }
+        }
+        public SeriesRepository SeriesRepository
+        {
+            get {
+                if (seriesrepository == null) {
+                    seriesrepository = new SeriesRepository(dbcontext);
+                }
+                return seriesrepository;
             }
         }
         public void Save() {

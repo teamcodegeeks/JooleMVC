@@ -19,10 +19,11 @@ namespace eCommerceMVC.Models
         public int ModelTypeId { get; set; }
         public int ModelId { get; set; }
         public int SubCategoryId { get; set; }
+        public string ImageURL { get; set; }
     
         public virtual Model Model { get; set; }
         public virtual ModelType ModelType { get; set; }
-        public virtual ProductTechSpec ProductTechSpec { get; set; }
         public virtual ProductSubCategory ProductSubCategory { get; set; }
+        public virtual ProductTechSpec ProductTechSpec { get; set; }
     }
 }
