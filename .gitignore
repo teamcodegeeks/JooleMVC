@@ -1,4 +1,4 @@
-###################
+﻿###################
 # compiled source #
 ###################
 *.com
@@ -51,6 +51,7 @@ TestResults/
 # Logs and databases #
 ######################
 *.log
+*.vs
 *.sqlite
 # OS generated files #
 ######################

@@ -9,10 +9,10 @@ namespace eCommerceMVC.UoW
 {
     public class UnitofWork:IDisposable
     {
-        private JooleEntities dbcontext;
+        private JoojleEntities dbcontext;
         private static UserRepository userrepository;
         private static ProductRepository productrepository;
-        public UnitofWork(JooleEntities dbcontext) {
+        public UnitofWork(JoojleEntities dbcontext) {
             this.dbcontext = dbcontext;
         }
         

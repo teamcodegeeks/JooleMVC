@@ -13,10 +13,10 @@ namespace eCommerceMVC.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class JooleEntities : DbContext
+    public partial class JoojleEntities : DbContext
     {
-        public JooleEntities()
-            : base("name=JooleEntities")
+        public JoojleEntities()
+            : base("name=JoojleEntities")
         {
         }
     

@@ -12,9 +12,9 @@ namespace eCommerceMVC.Repository
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private JooleEntities _dbcontext;
+        private JoojleEntities _dbcontext;
         private DbSet<User> dbset;
-        public UserRepository(JooleEntities dbcontext) : base(dbcontext) {
+        public UserRepository(JoojleEntities dbcontext) : base(dbcontext) {
             this._dbcontext = dbcontext;
             this.dbset = _dbcontext.Set<User>();
         }

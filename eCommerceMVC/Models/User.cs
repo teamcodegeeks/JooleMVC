@@ -19,7 +19,7 @@ namespace eCommerceMVC.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public byte UserRoleId { get; set; }
-        public byte[] Picture { get; set; }
+        public string Picture { get; set; }
         public string RoleDescription { get; set; }
     }
 }

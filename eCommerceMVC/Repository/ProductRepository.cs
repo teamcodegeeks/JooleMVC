@@ -10,9 +10,9 @@ namespace eCommerceMVC.Repository
 {
     public class ProductRepository:GenericRepository<Product>, IProductRepository
     {
-        private JooleEntities _dbcontext;
+        private JoojleEntities _dbcontext;
         private DbSet<Product> dbset;
-        public ProductRepository(JooleEntities dbcontext) : base(dbcontext)
+        public ProductRepository(JoojleEntities dbcontext) : base(dbcontext)
         {
             this._dbcontext = dbcontext;
             this.dbset = _dbcontext.Set<Product>();

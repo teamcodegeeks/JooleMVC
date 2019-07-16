@@ -13,7 +13,7 @@ namespace eCommerceMVC.Service
         User tempuserinfo = new User();
         public User userinfo(string nameemail)
         {
-            using (var unitofwork = new UnitofWork(new JooleEntities()))
+            using (var unitofwork = new UnitofWork(new JoojleEntities()))
             {
                 List<User> tempuser = unitofwork.UserRepository.Get(
                     filter: u => u.UserName == nameemail
@@ -35,7 +35,7 @@ namespace eCommerceMVC.Service
             else return false;
         }
         public void register(string username, string password, string email) {
-            using (var unitofwork = new UnitofWork(new JooleEntities())) {
+            using (var unitofwork = new UnitofWork(new JoojleEntities())) {
                 User tempuser = new User();
                 tempuser.UserName = username;
                 tempuser.Password = password;

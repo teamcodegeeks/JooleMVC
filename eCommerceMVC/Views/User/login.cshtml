@@ -25,20 +25,21 @@
     </div>
 
     <div class="logo">
-        <img src="~/Images/linkinpark.png" alt="logo" />
+        <img src="~/Images/Logo.png" alt="logo" />
         <p>Building Product Selection Platform</p>
     </div>
 
     <div class="login">
-        <form action="@Url.Action("LoginUser", "User")" method="post">
-            <p>@ViewData["erroeinfo"]
-            </p>
+        <form action="@Url.Action("LoginUser", "User")" method="post" class="form-group">
+            <p>@ViewData["erroeinfo"]</p>
             <input name="UserName" class="form-control"
                     type="text"
-                    placeholder="Username or Email" /><span class="fas fa-user loginspan"></span><br />
+                    placeholder="Username or Email" /><span class="fas fa-user loginspan"></span>
+            <br />
             <input name="UserPassword" class="form-control"
                    type="password"
-                   placeholder="Password" /><i class="fas fa-briefcase passspan"></i><br />
+                   placeholder="Password" /><i class="fas fa-briefcase passspan"></i>
+            <br />
             <input id="Submit1" class="btn btn-primary loginBtn" type="submit" value="Log In" />
         </form>
     </div>
@@ -102,4 +103,3 @@
     </script>
 </body>
 </html>
-
