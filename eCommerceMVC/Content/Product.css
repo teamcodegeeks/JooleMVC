@@ -21,6 +21,10 @@ body {
     margin-top: 40px;
 }
 
+.dropdownbtn {
+    margin-left: 34%;
+}
+
 .searchbtn {
     height: 34px;
 }
@@ -36,6 +40,12 @@ body {
 
 .leftpanel {
     background-color: #f8f8f8;
+}
+
+.rightpanel {
+    background-color: white;
+    display: inline-flex;
+    flex-direction: row;
 }
 
 .rows {
@@ -63,6 +73,37 @@ body {
 
 .glyphiconbtn {
     float: right;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    width: 25%;
+    margin: 5px 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.cardContainer {
+    padding: 2px 16px;
+    text-align: center;
+}
+
+.prodInfo {
+    font-weight: bold;
+}
+
+.productImage {
+    border-radius: 5px 5px 0 0;
+    margin: auto;
+}
+
+.selectbox {
+    display: flex;
+    justify-content: space-between;
 }
 /*.wrapper {
     2670A8

@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\Joole.Context.cs">
       <AutoGen>True</AutoGen>
@@ -203,6 +204,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Joole.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\IGenericRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,9 +281,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Register\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\ProfileImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

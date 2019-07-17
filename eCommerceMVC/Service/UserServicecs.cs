@@ -34,12 +34,13 @@ namespace eCommerceMVC.Service
             if (temppassword == password) return true;
             else return false;
         }
-        public void register(string username, string password, string email) {
+        public void register(string username, string password, string email, string imgUrl) {
             using (var unitofwork = new UnitofWork(new JoojleEntities())) {
                 User tempuser = new User();
                 tempuser.UserName = username;
                 tempuser.Password = password;
                 tempuser.Email = email;
+                tempuser.Picture = imgUrl;
                 tempuser.RoleDescription = "Customer";
                 tempuser.UserRoleId = 2;
                 unitofwork.UserRepository.Insert(tempuser);
