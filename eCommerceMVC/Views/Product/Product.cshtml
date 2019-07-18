@@ -538,15 +538,6 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var listsubid = @Html.Raw(Json.Encode(ViewBag.Subid));
-            var listProp = @Html.Raw(Json.Encode(ViewBag.Prop));
-            var listMin = @Html.Raw(Json.Encode(ViewBag.Min));
-            var listMax = @Html.Raw(Json.Encode(ViewBag.Max));
-            console.log(listProp[0]);
-        });
-    </script>
    
     <script>
         //var test = $("#x").data("value");

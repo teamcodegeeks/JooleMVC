@@ -29,7 +29,7 @@ namespace eCommerceMVC.Controllers
             {
                 Console.WriteLine("FIND !");
                 Session["error"] = 0;
-                return View();
+                return RedirectToAction("Search", "Search");
             }
             else {
                 Console.WriteLine("ERROR !");

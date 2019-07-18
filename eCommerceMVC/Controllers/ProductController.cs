@@ -13,9 +13,10 @@ namespace eCommerceMVC.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Product()
+        [HttpPost]
+        public ActionResult Product(int _SubcategoryId)
         {
-            int subId = 21;
+            int subId = _SubcategoryId;
             var temperatory = new ProductSummaryService();
             var table = from t1 in temperatory.Summary() where t1.SubCategoryId == subId select t1;
             var templist = table.ToList().ToList();
@@ -41,7 +42,7 @@ namespace eCommerceMVC.Controllers
             ViewBag.Max = listMax;
 
 
-            return View("Product", templist);
+            return View("Product",templist);
         }
         //public ActionResult Filter()
         //{

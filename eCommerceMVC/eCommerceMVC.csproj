@@ -155,9 +155,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CompareController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductSummaryController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\Joole.Context.cs">
       <AutoGen>True</AutoGen>
@@ -230,10 +232,13 @@
     <Compile Include="Repository\SeriesRepository.cs" />
     <Compile Include="Repository\SpecFilterRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Service\CompareService.cs" />
     <Compile Include="Service\ProductServicecs.cs" />
     <Compile Include="Service\ProductSummaryService.cs" />
+    <Compile Include="Service\SearchService.cs" />
     <Compile Include="Service\UserServicecs.cs" />
     <Compile Include="UoW\UoW.cs" />
+    <Compile Include="ViewModels\CompareProducts.cs" />
     <Compile Include="ViewModels\ProductSummary.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -241,15 +246,23 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Compare.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Product.css" />
     <Content Include="Content\ProductSummary.css" />
+    <Content Include="Content\search.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\calphalon.jfif" />
+    <Content Include="Images\Cuisinart.jpeg" />
+    <Content Include="Images\dyson.jpg" />
+    <Content Include="Images\Eureka.jpg" />
     <Content Include="Images\google_logo.png" />
+    <Content Include="Images\HoneyWell.jpeg" />
     <Content Include="Images\img_avatar.png" />
+    <Content Include="Images\lasko.jpg" />
     <Content Include="Images\Logo.png" />
     <Content Include="Models\Joole.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -305,6 +318,11 @@
     <Content Include="Views\ProductSummary\VacuumSummary.cshtml" />
     <Content Include="Views\ProductSummary\ToasterSummary.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
+    <Content Include="Views\Compare\FanCompare.cshtml" />
+    <Content Include="Views\Compare\ToasterCompare.cshtml" />
+    <Content Include="Views\Compare\VaccumCompare.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Shared\_Searchlayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

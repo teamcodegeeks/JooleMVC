@@ -10,16 +10,16 @@ namespace eCommerceMVC.UoW
     public partial class UnitofWork:IDisposable
     {
         private JoojleEntities dbcontext;
-        private static UserRepository userrepository;
-        private static ManufactureRepository manufacturerepository;
-        private static ModelRepository modelrepository;
-        private static ModelTypeRepository modeltyperepository;
-        private static ProductRepository productrepository;
-        private static ProductCategoryRepository productcategoryrepository;
-        private static ProductSubCategoryRepository productsubcategoryrepository;
-        private static ProductTechSpecRepository producttechspecrepository;
-        private static SeriesRepository seriesrepository;
-        private static SpecFilterRepository specfilterrepository;
+        private  UserRepository userrepository;
+        private  ManufactureRepository manufacturerepository;
+        private  ModelRepository modelrepository;
+        private  ModelTypeRepository modeltyperepository;
+        private  ProductRepository productrepository;
+        private  ProductCategoryRepository productcategoryrepository;
+        private  ProductSubCategoryRepository productsubcategoryrepository;
+        private  ProductTechSpecRepository producttechspecrepository;
+        private  SeriesRepository seriesrepository;
+        private  SpecFilterRepository specfilterrepository;
         public UnitofWork(JoojleEntities dbcontext) {
             this.dbcontext = dbcontext;
         }

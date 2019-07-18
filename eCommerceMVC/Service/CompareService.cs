@@ -9,16 +9,18 @@ using eCommerceMVC.ViewModels;
 
 namespace eCommerceMVC.Service
 {
-    public class ProductSummaryService
+    public class CompareService
     {
-        public IQueryable<ProductSummary> Summary()
+        public IEnumerable<CompareProducts> Summary()
+
         {
             var unitofwork = new UnitofWork(new JoojleEntities());
             var seriestable = unitofwork.SeriesRepository.GetAll();
             var manufacturetable = unitofwork.ManufactureRepository.GetAll();
             var series_manufacture = from t1 in seriestable
                                      join t2 in manufacturetable on t1.ManufactureId equals t2.ManufactureId
-                                     select new ProductSummary {
+                                     select new CompareProducts
+                                     {
                                          //CategoryId = 0,
                                          //CategoryName = "",
                                          ////
@@ -71,12 +73,13 @@ namespace eCommerceMVC.Service
                                          Length = 0
                                      };
 
-            var temp1 =  series_manufacture.ToList();
+            var temp1 = series_manufacture.ToList();
             var modeltable = unitofwork.ModelRepository.GetAll();
             var modeltypetable = unitofwork.ModelTypeRepository.GetAll();
             var model_modeltype = from t1 in modeltable
                                   join t2 in modeltypetable on t1.ModelId equals t2.ModelId
-                                  select new ProductSummary {
+                                  select new CompareProducts
+                                  {
                                       // ModelId = t1.ModelId,
                                       // ModelName = t1.ModelName,
                                       // ModelYear = t2.ModelYear,
@@ -128,11 +131,9 @@ namespace eCommerceMVC.Service
             var temp2 = model_modeltype.ToList();
             var category = unitofwork.ProductCategoryRepository.GetAll();
             var subcategory = unitofwork.ProductSubCategoryRepository.GetAll();
-            var tempcategory = category.ToList();
-            var tempsubcategory = subcategory.ToList();
             var category_subcategory = from t1 in category
                                        join t2 in subcategory on t1.CategoryId equals t2.CategoryId
-                                       select new ProductSummary
+                                       select new CompareProducts
                                        {
                                            //CategoryId = t1.CategoryId,
                                            //CategoryName = t1.CategoryName,
@@ -186,7 +187,8 @@ namespace eCommerceMVC.Service
             var productspec = unitofwork.ProductTechSpecRepository.GetAll();
             var product_spec = from t1 in product
                                join t2 in productspec on t1.ProductId equals t2.ProductId
-                               select new ProductSummary{
+                               select new CompareProducts
+                               {
                                    //ProductId = t1.ProductId,
                                    //ProductName = t1.ProductName,
                                    //ModelId = t1.ModelId,
@@ -285,7 +287,7 @@ namespace eCommerceMVC.Service
             //                       };
             var category_series = from t1 in category_subcategory
                                   join t2 in series_manufacture on t1.SubCategoryId equals t2.SubCategoryId
-                                  select new ProductSummary
+                                  select new CompareProducts
                                   {
 
                                       //CategoryId = t1.CategoryId,
@@ -337,7 +339,7 @@ namespace eCommerceMVC.Service
             var temp5 = category_series.ToList();
             var category_series_model = from t1 in category_series
                                         join t2 in model_modeltype on t1.SeriesId equals t2.SeriesId
-                                        select new ProductSummary
+                                        select new CompareProducts
                                         {
                                             //SeriesId = t1.SeriesId,
                                             //SeriesName = t1.SeriesName,
@@ -395,7 +397,7 @@ namespace eCommerceMVC.Service
             var temp6 = category_series_model.ToList();
             var productinfo = from t1 in product_spec
                               join t2 in category_series_model on t1.ModelId equals t2.ModelId
-                              select new ProductSummary
+                              select new CompareProducts
                               {
                                   ManufactureId = t2.ManufactureId,
                                   MaunfactureIdName = t2.MaunfactureIdName,
@@ -435,7 +437,8 @@ namespace eCommerceMVC.Service
                                   LevelOfTemperature = t1.LevelOfTemperature,
                                   Length = t1.Length,
                               };
-            return productinfo;
+            var temptest = productinfo.ToList();
+            return productinfo.ToList();
         }
 
     }

@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+@{ 
+    Layout = "~/Views/Shared/_Searchlayout.cshtml";
+}
+
+
+@*<link href="http://code.jquery.com/ui/1.10.2/themes/base/jquery-ui.css" rel="Stylesheet"/>
+    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>*@
+@*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/search.css" asp-append-version="true" />*@
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.css"
+      asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+      asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+@*<link rel="stylesheet" href="~/Content/search.css" asp-append-version="true" />*@
+
+<script type="text/javascript">
+
+
+    var categoryId = 0;
+
+    function goToResult() {
+        var searchString = $("#txtSearchkeyword").val();
+        console.log("pass value:" + searchString + " " + categoryId);
+
+        $.post("@Url.Action("ShowSearch","Search")", { categoryid: categoryId, searchstring: searchString }, function (data) {
+            console.log("pass value to controller" + searchString + " " + categoryId);
+            //alert(data);
+        });
+
+    }
+
+
+    $(document).ready(function () {
+        //window.AutoComplete = function (cateId) {
+        //    console.log("get id from drop down:" + cateId);
+        //    categoryId = cateId.value;
+        //}
+        window.setAutoCompletePara = function (cateId) {
+            //console.log("setAuto get id from drop down:" + cateId + "cateid:" + this.categoryId);
+            window.categoryId = cateId;
+            autoCompleteReqeust(cateId);
+            var cateName = $("#"+cateId).text();
+            $("#search_concept").text(cateName);
+            
+        };
+
+        window.getInput = function () {
+            //console.log("getInput: get cateid when input:" + this.categoryId);
+            if (window.categoryId == 0) {
+                autoCompleteReqeust(0)
+            }
+            else {
+                autoCompleteReqeust(window.categoryId);
+            }
+
+        };
+
+        $("#txtSearchkeyword").keyup(function () {
+            //console.log("keyup event: id-" + window.categoryId + " ");
+            if (window.categoryId == 0) {
+                //console.log("Search all category");
+                autoCompleteReqeust(0)
+            }
+            else {
+
+                autoCompleteReqeust(window.categoryId);
+            }
+        });
+
+        //console.log("Defualt id:" + categoryId + " search info:" + $("#txtSearchkeyword").val());
+
+        function autoCompleteReqeust(categoryId) {
+
+            var myid = categoryId;
+
+
+            //console.log("complete:myid:" +myid+" search info:"+$("#txtSearchkeyword").val());
+            $("#txtSearchkeyword").autocomplete({
+                source: function (request, response) {
+
+                    //console.log("enter ajax categoryId:" + categoryId+" search info:"+$("#txtSearchkeyword").val());
+                    @*//console.log("@Url.Action("AutoComplete")");*@
+                $.ajax({
+                        type: 'POST',
+                    url: '@Url.Action("AutoComplete")',
+                    data: { search: $("#txtSearchkeyword").val(), _categoryId: categoryId },
+                        datatyp: 'Json',
+                        complete: function () {
+                            console.log("active");
+                        },
+                        success: function (data) {
+                            console.log(data);
+
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item
+                                };
+                            }));
+                        },
+                        error: function (err) {
+                            alert(err);
+                            console.log(err);
+                            alert("fail to get info");
+                        }
+                    });
+                }
+            });
+
+        }
+    });
+</script>
+
+<body>
+    <!-- Just an image -->
+    <nav class="navbar navbar-light bg-light">
+        @*<a class="navbar-brand" href="#">
+            <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+        </a>*@
+       
+    </nav>
+    <div class="container">
+        <div class="col-lg-12"><img class="center-block img-responsive" src="~/images/Logo.png" class="img-rounded"></div>
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8 col-xs-offset-1" @*style="border: 1px solid red"*@>
+                <div class="input-group row col-lg-10" @*style="border: 1px solid yellow"*@>
+                    <div class="input-group-btn search-panel">
+                        <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span id="search_concept">Category</span> <span class="caret"></span>
+                        </button>
+                           
+                        @*<div class="dropdown-menu" aria-labelledby="dropdownMenu2">*@
+                            <ul class="dropdown-menu" role="menu">
+                                @foreach (var subcateobj in TempData["Cate"] as IEnumerable<eCommerceMVC.Models.ProductCategory>)
+                                {
+                                    <li>
+                                        <a href="javascript:void(0);" id='@subcateobj.CategoryId' onclick="setAutoCompletePara(this.id)">@subcateobj.CategoryName</a>
+                                    </li>
+                                }
+                            </ul>
+                        @*
+                            
+                        </div>
+                        *@
+
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="search_param" value="all" id="search_param">
+
+
+                    <input type="text" class="form-control" style="width:100%" id="txtSearchkeyword" name="x" placeholder="Search Subcategory" onchange="getInput()">
+
+
+
+                    <div class="input-group-btn input-group-append">
+                        <button class="btn btn-default" type="button" onclick='goToResult()'><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+
+
+
+
+</body>
+
