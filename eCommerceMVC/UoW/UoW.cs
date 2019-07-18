@@ -19,6 +19,7 @@ namespace eCommerceMVC.UoW
         private static ProductSubCategoryRepository productsubcategoryrepository;
         private static ProductTechSpecRepository producttechspecrepository;
         private static SeriesRepository seriesrepository;
+        private static SpecFilterRepository specfilterrepository;
         public UnitofWork(JoojleEntities dbcontext) {
             this.dbcontext = dbcontext;
         }
@@ -26,12 +27,16 @@ namespace eCommerceMVC.UoW
         public UserRepository UserRepository
         {
             get {
-                if (userrepository == null) {
+                if (userrepository == null)
+                {
                     userrepository = new UserRepository(dbcontext);
                 }
+                //if (!userrepository.ifdbcontext())
+                //else disposed = false;
                 return userrepository;
             }
         }
+        
         public ManufactureRepository ManufactureRepository
         {
             get {
@@ -102,6 +107,15 @@ namespace eCommerceMVC.UoW
                     seriesrepository = new SeriesRepository(dbcontext);
                 }
                 return seriesrepository;
+            }
+        }
+        public SpecFilterRepository SpecFilterRepository
+        {
+            get {
+                if (specfilterrepository == null) {
+                    specfilterrepository = new SpecFilterRepository(dbcontext);
+                }
+                return specfilterrepository;
             }
         }
         public void Save() {

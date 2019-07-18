@@ -13,22 +13,34 @@ namespace eCommerceMVC.Service
         User tempuserinfo = new User();
         public User userinfo(string nameemail)
         {
-            using (var unitofwork = new UnitofWork(new JoojleEntities()))
+            var unitofwork = new UnitofWork(new JoojleEntities());
+            List<User> tempuser = unitofwork.UserRepository.Get(filter: u => u.UserName == nameemail
+                    ).ToList();
+            if (tempuser.Count != 0) return tempuserinfo = tempuser[0];
+            else
             {
-                List<User> tempuser = unitofwork.UserRepository.Get(
-                    filter: u => u.UserName == nameemail
+                tempuser = unitofwork.UserRepository.Get(
+                    filter: u => u.Email == nameemail
                     ).ToList();
                 if (tempuser.Count != 0) return tempuserinfo = tempuser[0];
-                else
-                {
-                    tempuser = unitofwork.UserRepository.Get(
-                        filter: u => u.Email == nameemail
-                        ).ToList();
-                    if (tempuser.Count != 0) return tempuserinfo = tempuser[0];
-                }
-                return null;
             }
-        }
+            return null;
+                //using (var unitofwork = new UnitofWork(new JoojleEntities()))
+                //{
+                //    List<User> tempuser = unitofwork.UserRepository.Get(
+                //        filter: u => u.UserName == nameemail
+                //        ).ToList();
+                //    if (tempuser.Count != 0) return tempuserinfo = tempuser[0];
+                //    else
+                //    {
+                //        tempuser = unitofwork.UserRepository.Get(
+                //            filter: u => u.Email == nameemail
+                //            ).ToList();
+                //        if (tempuser.Count != 0) return tempuserinfo = tempuser[0];
+                //    }
+                //    return null;
+                //}
+            }
         public bool Login(string password) {
             string temppassword = tempuserinfo.Password;
             if (temppassword == password) return true;

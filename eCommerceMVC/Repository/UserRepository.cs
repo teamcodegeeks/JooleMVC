@@ -18,5 +18,15 @@ namespace eCommerceMVC.Repository
             this._dbcontext = dbcontext;
             this.dbset = _dbcontext.Set<User>();
         }
+        //public bool ifdbcontext()
+        //{
+        //    if (this._dbcontext != null) return true;
+        //    return false;
+        //}
+        //public void newdbcontext(JoojleEntities dbcontext)
+        //{
+        //    this._dbcontext = dbcontext;
+        //    this.dbset = _dbcontext.Set<User>();
+        //}
     }
 }

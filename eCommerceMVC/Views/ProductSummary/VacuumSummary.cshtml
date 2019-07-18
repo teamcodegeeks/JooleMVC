@@ -1,55 +1,53 @@
 ﻿@model eCommerceMVC.ViewModels.ProductSummary
 
 @{
-    ViewBag.Title = "FanSummary";
+    ViewBag.Title = "VacuumSummary";
 }
-
-
 <!DOCTYPE html>
 <head>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/ProductSummary.css" type="text/css" rel="stylesheet" />
 </head>
-   
+
 <body>
     @*<div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                @Html.ActionLink("ProductSummary", "ProductSummary")
-            </li>
-            <li class="nav-item active">
-                @Html.ActionLink("ProductDetails", "ProductDetails")
-            </li>
-        </ul>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>*@
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    @Html.ActionLink("ProductSummary", "ProductSummary")
+                </li>
+                <li class="nav-item active">
+                    @Html.ActionLink("ProductDetails", "ProductDetails")
+                </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>*@
     <nav class="navbar navbar-default">
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -106,10 +104,6 @@
                     <td width="50%">@Model.Application</td>
                 </tr>
                 <tr>
-                    <td class="description" width="50%">Mounting Location</td>
-                    <td width="50%">@Model.MountingLocation</td>
-                </tr>
-                <tr>
                     <td class="description" width="50%">Accessories</td>
                     <td width="50%">@Model.Accessories</td>
                 </tr>
@@ -141,9 +135,9 @@
                 <tr>
                     <td class="description">Power(W)</td>
                     <td class=" description">Min</td>
-                    <td >@Model.PowerMin</td>
-                    <td class=" description" >Max</td>
-                    <td >@Model.PowerMax</td>
+                    <td>@Model.PowerMin</td>
+                    <td class=" description">Max</td>
+                    <td>@Model.PowerMax</td>
                 </tr>
                 <tr>
                     <td class="description">Operating Voltage(VAC)</td>
@@ -174,13 +168,6 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="description">Fan Sweep diameter</td>
-                    <td>@Model.FanSweepDiameter</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td class="description">Height(in)</td>
                     <td class=" description">Min</td>
                     <td>@Model.HeightMin</td>
@@ -198,3 +185,5 @@
         </div>
     </div>
 </body>
+
+

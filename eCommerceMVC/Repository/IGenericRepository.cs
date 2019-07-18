@@ -20,6 +20,5 @@ namespace eCommerceMVC.Repository
         void Delete(object id);
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
-
     }
 }

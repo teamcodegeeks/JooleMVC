@@ -156,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductSummaryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\Joole.Context.cs">
@@ -216,6 +217,7 @@
     <Compile Include="Repository\IProductSubCategoryRepository.cs" />
     <Compile Include="Repository\IProductTechSpecRepository.cs" />
     <Compile Include="Repository\ISeriesRepository.cs" />
+    <Compile Include="Repository\ISpecFilterRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />
     <Compile Include="Repository\IProductCategoryRepository.cs" />
     <Compile Include="Repository\ManufactureRepository.cs" />
@@ -226,7 +228,9 @@
     <Compile Include="Repository\ProductSubCategoryRepository.cs" />
     <Compile Include="Repository\ProductTechSpecRepository.cs" />
     <Compile Include="Repository\SeriesRepository.cs" />
+    <Compile Include="Repository\SpecFilterRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Service\ProductServicecs.cs" />
     <Compile Include="Service\ProductSummaryService.cs" />
     <Compile Include="Service\UserServicecs.cs" />
     <Compile Include="UoW\UoW.cs" />
@@ -238,14 +242,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\login.css" />
-    <Content Include="Content\FanSummary.css" />
+    <Content Include="Content\Product.css" />
+    <Content Include="Content\ProductSummary.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\google_logo.png" />
     <Content Include="Images\img_avatar.png" />
-    <Content Include="Images\linkinpark.png" />
+    <Content Include="Images\Logo.png" />
     <Content Include="Models\Joole.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Joole.edmx</DependentUpon>
@@ -297,10 +302,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\ProductSummary\FanSummary.cshtml" />
+    <Content Include="Views\ProductSummary\VacuumSummary.cshtml" />
+    <Content Include="Views\ProductSummary\ToasterSummary.cshtml" />
+    <Content Include="Views\Product\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ProductSummay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

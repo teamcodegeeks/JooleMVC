@@ -1,0 +1,709 @@
+﻿@model IEnumerable<eCommerceMVC.ViewModels.ProductSummary>
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@{
+
+    ViewBag.Title = "Product";
+
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="~/Content/bootstrap.css" type="text/css" rel="stylesheet" />
+
+    <link href="~/Content/Product.css" type="text/css" rel="stylesheet" />
+
+    <link href="~/Content/Site.css" type="text/css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+
+    @*Navigation Bar*@
+
+    <nav class="navbar navbar-default navbar-fixed-top customstylenav">
+
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+
+                <a class="navbar-brand" href="#">
+
+                    <img src="~/Images/Logo.png" alt="Logo" class="img-responsive imagelogo" />
+
+                </a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <form class="navbar-form navform">
+
+                    <button class="btn btn-primary dropdown-toggle btn-sm" style="height: 34px;" type="button" data-toggle="dropdown">
+
+                        Category
+
+                        <span class="caret"></span>
+
+                    </button>
+
+                    <ul class="dropdownbtn dropdown-menu">
+
+                        <li><a href="#">HTML</a></li>
+
+                        <li><a href="#">CSS</a></li>
+
+                        <li><a href="#">JavaScript</a></li>
+
+                    </ul>
+
+                    <div class="form-group">
+
+                        <input type="text" class="form-control" placeholder="Search">
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary searchbtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+                </form>
+
+
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><img src="~/Images/img_avatar.png" alt="profileImage" class="img-responsive imageprofile img-circle" /></li>
+
+                </ul>
+
+            </div><!-- /.navbar-collapse -->
+
+        </div><!-- /.container-fluid -->
+
+    </nav>
+
+
+
+    @*Side Bar*@
+
+
+
+    <div class="body-content">
+
+        <div class="wrapper">
+
+            <div class="row">
+
+                <div class="col-sm-3 col-md-3 col-lg-3 hidden-xs leftpanel">
+
+                    <div class="row row-1 rows">
+
+                        <div class="col-xs-6 col-sm-4 rowspan">
+
+                            <span>Search</span>
+
+                        </div>
+
+                        <div class="col-xs-10 col-sm-8 rowbtn">
+
+                            <button class="btn btn-primary">Save</button>
+
+                            <button class="btn btn-primary">Clear</button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row row-2 rows">
+
+                        <div class="col-xs-8 col-sm-6" style="text-align: center;">
+
+                            <span>Product</span>
+
+                        </div>
+
+                        <div class="vl"></div>
+
+                        <div class="col-xs-10 col-sm-6" style="text-align: center;">
+
+                            <span>Project</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row row-3 rows">
+
+                        <div class="col-xs-10 col-sm-6 rowspan">
+
+                            <span>Product Type</span>
+
+                        </div>
+
+                        <div class="col-xs-10 col-md-6 rowspan">
+
+                            <button id="ptypebtn" class="btn btn-default glyphiconbtn"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row row-4 rows" id="ptypediv" style="display: none;">
+
+                        <div class="col-xs-2 col-sm-5 rowspan">
+
+                            <span>Model Year: </span>
+
+                        </div>
+
+                        <div class="col-xs-8 col-sm-7 rowspan">
+
+                            <input type="text" size="4" />
+
+                            <input type="text" size="4" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="row row-5 rows">
+
+                        <div class="col-xs-10 col-sm-8 rowspan">
+
+                            <span>Technical Specification</span>
+
+                        </div>
+
+                        <div class="col-xs-10 col-md-4 rowspan">
+
+                            <button id="tspecbtn" class="btn btn-default glyphiconbtn"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
+
+                        </div>
+
+                    </div>
+                    <div class="row row-6 rows" id="tspecdiv" style="display: none;">
+                        @if (ViewBag.SpecFilter != null)
+                        {
+                            foreach (var spec in ViewBag.SpecFilter)
+                            {
+
+
+                                <div class="col-xs-10 col-sm-2 rowspan">
+
+                                    <span class="glyphicon glyphicon-sort"></span>
+
+                                </div>
+
+                                <div class="col-xs-10 col-sm-4 rowspan">
+
+                                    <span>@spec.PropertyName</span>
+
+                                </div>
+
+                                <br /><br /><br />
+
+                                <div class="row">
+
+                                    <div class="col-sm-3 col-md-3 col-md-3">
+
+                                        <input type="text" class="form-control slidervalue" data-index="0" value="100" id= "min_@spec.SubCategoryId@spec.PropertyName" />
+
+                                    </div>
+
+                                    <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+
+                                        <div id="@spec.SubCategoryId@spec.PropertyName"></div>
+                                        <div> </div>
+
+                                    </div>
+
+                                    <div class="col-sm-3 col-md-3 col-md-3">
+
+                                        <input type="text" class="form-control slidervalue" data-index="1" value="10000" id= "max_@spec.SubCategoryId@spec.PropertyName" />
+
+                                    </div>
+
+                                </div>
+                                <br />
+                            }
+                        }
+                    </div>
+                    @*<div class="row row-6 rows" id="tspecdiv" style="display: none;">
+
+        <div class="col-xs-10 col-sm-2 rowspan">
+
+            <span class="glyphicon glyphicon-sort"></span>
+
+        </div>
+
+        <div class="col-xs-10 col-sm-4 rowspan">
+
+            <span>Air Flow</span>
+
+        </div>
+
+        <br /><br /><br />
+
+        <div class="row">
+
+            <div class="col-sm-3 col-md-3 col-md-3">
+
+                <input type="text" class="form-control slidervalue" data-index="0" value="100" id="minAir" />
+
+            </div>
+
+            <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+
+                <div id="slider-air"></div>
+
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-md-3">
+
+                <input type="text" class="form-control slidervalue" data-index="1" value="10000" id="maxAir" />
+
+            </div>
+
+        </div>
+
+
+
+        <br />
+
+        <div class="col-xs-10 col-sm-2 rowspan">
+
+            <span class="glyphicon glyphicon-sort"></span>
+
+        </div>
+
+        <div class="col-xs-10 col-sm-8 rowspan">
+
+            <span>Fan speed</span>
+
+        </div>
+
+        <br /><br /><br />
+
+        <div class="row">
+
+            <div class="col-sm-3 col-md-3 col-md-3">
+
+                <input type="text" class="form-control slidervalue" data-index="0" value="1" id="minFan" />
+
+            </div>
+
+            <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+
+                <div id="slider-fan"></div>
+
+            </div>
+
+            <div class="col-sm-3 col-md-3 col-md-3">
+
+                <input type="text" class="form-control slidervalue" data-index="1" value="1000" id="maxFan" />
+
+            </div>
+
+        </div>*@
+
+
+
+                    @*<br /><br />
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+                <span class="glyphicon glyphicon-sort"></span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+                <span>Power</span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+
+
+            </div>
+
+
+
+            <br /><br />
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+                <span class="glyphicon glyphicon-sort"></span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-8 rowspan">
+
+                <span>Operating Voltage</span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+
+
+            </div>
+
+
+
+
+
+            <br /><br />
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+                <span class="glyphicon glyphicon-sort"></span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-10 rowspan">
+
+                <span>Number of fan speed</span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+
+
+            </div>
+
+
+
+
+
+            <br /><br /><br />
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+                <span class="glyphicon glyphicon-sort"></span>
+
+            </div>
+
+            <div class="col-xs-10 col-md-8 rowspan">
+
+                <span>Sound at max speed</span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+
+
+            </div>
+
+
+
+
+
+            <br /><br />
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+                <span class="glyphicon glyphicon-sort"></span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-10 rowspan">
+
+                <span>Fan sweep diameter</span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+
+
+            </div>
+
+
+
+
+
+            <br /><br /><br />
+
+            <div class="col-xs-8 col-sm-2 rowspan">
+
+                <span class="glyphicon glyphicon-sort"></span>
+
+            </div>
+
+            <div class="col-xs-12 col-sm-8 rowspan">
+
+                <span>weight</span>
+
+            </div>
+
+            <div class="col-xs-10 col-sm-2 rowspan">
+
+
+
+            </div>
+
+        </div>*@
+
+
+
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 rightpanel">
+                        <div class="card" >
+                            @if (Model != null)
+                            {
+
+                                foreach (var product in Model)
+                                {
+
+
+                                    <img src="~/Images/img_avatar.png" class="img-thumbnail img-responsive productImage" alt="Product Image">
+
+                                    <div class="cardContainer">
+
+                                        <div class="prodInfo">
+
+                                            <p id="fanName">@product.ProductName</p>
+
+                                            <p id="seriesNum">@product.SeriesId</p>
+
+                                            <p id="modelNum">@product.ModelId</p>
+
+                                        </div>
+
+                                        <br /><br />
+
+                                        <div class="predSpec">
+
+                                            <p id="airFlow">@product.AirFlow</p>
+
+                                            <p id="maxSpeed">@product.FanSpeedMax W at max speed</p>
+
+                                            <p id="soundAtMaxSpeed">@product.SoundAtMaxSpeed dBA at max speed</p>
+
+                                            <p id="fanSpeedDiameter">@product.FanSweepDiameter fan sweep diameter</p>
+
+                                        </div>
+
+                                        <br />
+
+                                        <div class="selectbox">
+
+                                            <input type="checkbox" /><span>Compare</span>
+
+                                            <button class="btn btn-primary">Add to</button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                }
+
+                            }
+                        </div>
+
+                        </div>
+
+
+                    </div>
+
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var listsubid = @Html.Raw(Json.Encode(ViewBag.Subid));
+            var listProp = @Html.Raw(Json.Encode(ViewBag.Prop));
+            var listMin = @Html.Raw(Json.Encode(ViewBag.Min));
+            var listMax = @Html.Raw(Json.Encode(ViewBag.Max));
+            console.log(listProp[0]);
+        });
+    </script>
+   
+    <script>
+        //var test = $("#x").data("value");
+        //console.log(test);
+        $(document).ready(function () {
+            @*var specfilters = '@ViewBag.SpecFilter';
+            alert(specfilters.length);*@
+            var count = @ViewBag.Subid.Count;
+            var listsubid = @Html.Raw(Json.Encode(ViewBag.Subid));
+            var listProp = @Html.Raw(Json.Encode(ViewBag.Prop));
+            var listMin = @Html.Raw(Json.Encode(ViewBag.Min));
+            var listMax = @Html.Raw(Json.Encode(ViewBag.Max));
+            console.log(listProp[0]);
+            for (var i = 0; i < count; i++) {
+                @*var test = '@ViewBag.SpecFilter'.[i].SubcategoryId;
+                alert('@ViewBag.SpecFilter'[i].SubcategoryId);*@
+                var minstring = "min_" + listsubid[i] + listProp[i];
+                var maxstring = "max_" + listsubid[i] + listProp[i];
+                var sliderid = listsubid[i] + listProp[i];
+                console.log($("#" + sliderid));
+
+                console.log(minstring + " " + sliderid);
+                //$("#" + listsubid[i] + listProp[i]).slider({
+                $("#" + sliderid).slider({
+                    range: true,
+                    min: listMin[i],
+                    max: listMax[i],
+                    values: [200, 700],
+                    slide: function (event, ui) {
+                        $("#" + minstring).val(ui.values[0]);
+                        //$("#" + "min_" + listsubid[i] + listProp[i]).val(ui.values[0]);
+                        //$("#" + "max_" + listsubid[i] + listProp[i]).val(ui.values[1]);
+                        $("#" + maxstring).val(ui.values[1]);
+                    }
+                });
+                $("#" + minstring).val($("#" + sliderid).slider("values", 0));
+                console.log($("#" + minstring).val($("#" + sliderid).slider("values", 0)));
+                //$("#" + "min_" + listsubid[i] + listProp[i]).val($("#" + listsubid[i] + listProp[i]).slider("values", 0));
+                //$("#" + "max_" + listsubid[i] + listProp[i]).val($("#" + listsubid[i] + listProp[i]).slider("values", 1));
+                $("#" + maxstring).val($("#" + sliderid).slider("values", 1));
+
+            };
+
+
+
+
+            //    $("#slider-fan").slider({
+
+            //        range: true,
+
+            //        min: 1,
+
+            //        max: 1000,
+
+            //        values: [200, 900],
+
+            //        slide: function (event, ui) {
+
+            //            $("#minFan").val(ui.values[0]);
+
+            //            $("#maxFan").val(ui.values[1]);
+
+            //        }
+
+            //    });
+
+            //    $("#minFan").val($("#slider-fan").slider("values", 0));
+
+            //    $("#maxFan").val($("#slider-fan").slider("values", 1));
+
+            //});
+
+
+
+            var ptypeclick = false;
+
+            var tspecclick = false;
+
+            $('#ptypebtn').on('click', function () {
+
+                if (ptypeclick == false) {
+
+                    $('#ptypediv').hide();
+
+                    ptypeclick = true;
+
+                } else {
+
+                    $('#ptypediv').show();
+
+                    ptypeclick = false;
+
+                }
+
+            });
+
+
+
+            $('#tspecbtn').on('click', function () {
+
+                if (tspecclick == false) {
+
+                    $('#tspecdiv').hide();
+
+                    tspecclick = true;
+
+                } else {
+
+                    $('#tspecdiv').show();
+
+                    tspecclick = false;
+
+                }
+
+            });
+        });
+
+    </script>
+    @*<input type="hidden" id="x" data-value="@ViewBag.SpecFilter.PropertyName" />*@
+</body>
+
+</html>
+
+
+
+@*<div class="form-group">
+
+        <form action="@Url.Action("GetProduct", "Product")">
+
+            <input type="submit" class="btn btn-primary" value="submit" />
+
+                @if (ViewBag.product != null)
+
+                {
+
+                    <ul id="displaySpike">
+
+                        @foreach (var product in ViewBag.product)
+
+                        {
+
+                            <li>@product.ProductId</li>
+
+                            <li>@product.ProductName</li>
+
+                            <li>@product.ModelTypeId</li>
+
+                            <li>@product.ModelId</li>
+
+                            <li>@product.SubCategoryId</li>
+
+                        }
+
+                    </ul>
+
+                }
+
+        </form>
+
+    </div>*@
