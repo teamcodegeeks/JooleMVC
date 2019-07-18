@@ -13,10 +13,10 @@ body {
     cursor: pointer;
 }
 
-    .navBar li a {
-        text-decoration: none;
-        color: black;
-    }
+.navBar li a {
+    text-decoration: none;
+    color: black;
+}
 
 .logo {
     width: auto;
@@ -65,4 +65,8 @@ body {
     border-radius: 50%;
     width: 100px;
     background-color: grey;
+}
+
+.error {
+    color: red;
 }

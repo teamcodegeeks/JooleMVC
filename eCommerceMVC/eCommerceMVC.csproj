@@ -282,10 +282,12 @@
     <Content Include="Views\User\login.cshtml" />
     <Content Include="Views\Product\Product.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Shared\_sharedLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\ProfileImages\" />
+    <Folder Include="Views\Compare\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

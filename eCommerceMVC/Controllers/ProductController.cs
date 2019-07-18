@@ -14,19 +14,31 @@ namespace eCommerceMVC.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View("Product");
-        }
-
-        public ActionResult GetProduct()
-        {
             ProductService ps = new ProductService();
             List<Product> prod = new List<Product>();
             prod = ps.prodInfo(21);
 
             if (prod.Count > 0)
             {
-                ViewBag.product = prod;
+                List<Product> listProduct = new List<Product>();
+                foreach(var item in prod)
+                {
+                    Product product = new Product();
+                    product.ProductId = item.ProductId;
+                    product.ProductName = item.ProductName;
+                    product.ModelTypeId = item.ModelTypeId;
+                    product.SubCategoryId = item.SubCategoryId;
+                    listProduct.Add(product);
+                }
+
+                ViewBag.product = listProduct.ToArray();
+              //  ViewBag.product = new string[] { "teset", "tes2t", "Riddhi" };
             }
+            return View("Product");
+        }
+
+        public ActionResult GetProduct()
+        {
             return View("Product");
         }
     }

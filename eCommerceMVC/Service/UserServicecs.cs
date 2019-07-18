@@ -8,6 +8,7 @@ using eCommerceMVC.UoW;
 
 namespace eCommerceMVC.Service
 {
+    //Webforms page life cycle
     public class UserServicecs
     {
         User tempuserinfo = new User();
@@ -47,11 +48,6 @@ namespace eCommerceMVC.Service
                 unitofwork.Save();
             }
         }
-        //public void deletemember(string username) {
-        //    using (var unitofwork = new UnitofWork(new JooleEntities())) {
-        //        List
-        //    }
-        //}
     }
 
 

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using System.Web;
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -100,130 +102,93 @@
                             </div>
                         </div>
                         <div class="row row-6 rows" id="tspecdiv" style="display: none;">
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
+                            <div class="col-xs-10 col-sm-2 rowspan">
+                                <span class="glyphicon glyphicon-sort"></span>
+                            </div>
+                            <div class="col-xs-10 col-sm-4 rowspan">
+                                <span>Air Flow</span>
+                            </div>
+                            <br /><br /><br/>   
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="0" value="100" id="minAir" />
                                 </div>
-                                <div class="col-xs-10 col-sm-4 rowspan">
-                                    <span>Air Flow</span>
+                                <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+                                    <div id="slider-air"></div>
                                 </div>
-                                <br /><br /><br/>
-                                <div class="row">
-                                    <div class="col-sm-3 col-md-3 col-md-3">
-                                        <input type="text" class="form-control slidervalue" data-index="0" value="100" id="minAir" />
-                                    </div>
-                                    <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
-                                        <div id="slider-air"></div>
-                                    </div>
-                                    <div class="col-sm-3 col-md-3 col-md-3">
-                                        <input type="text" class="form-control slidervalue" data-index="1" value="10000" id="maxAir" />
-                                    </div>
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="1" value="10000" id="maxAir" />
                                 </div>
+                            </div>
 
-                                <br />
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
+                            <br />
+                            <div class="col-xs-10 col-sm-2 rowspan">
+                                <span class="glyphicon glyphicon-sort"></span>
+                            </div>
+                            <div class="col-xs-10 col-sm-2 rowspan">
+                                <span>PowerMax</span>
+                            </div>
+                            <br /><br /><br />
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="0" value="100" id="minPower" />
                                 </div>
-                                <div class="col-xs-10 col-sm-8 rowspan">
-                                    <span>Fan speed</span>
+                                <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+                                    <div id="slider-powerMax"></div>
                                 </div>
-                                <br /><br /><br />
-                                <div class="row">
-                                    <div class="col-sm-3 col-md-3 col-md-3">
-                                        <input type="text" class="form-control slidervalue" data-index="0" value="1" id="minFan" />
-                                    </div>
-                                    <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
-                                        <div id="slider-fan"></div>
-                                    </div>
-                                    <div class="col-sm-3 col-md-3 col-md-3">
-                                        <input type="text" class="form-control slidervalue" data-index="1" value="1000" id="maxFan" />
-                                    </div>
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="1" value="10000" id="maxPower" />
                                 </div>
-
-                                <br /><br />
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
+                            </div>
+                            <br /><br />
+                            <div class="col-xs-10 col-sm-2 rowspan">
+                                <span class="glyphicon glyphicon-sort"></span>
+                            </div>
+                            <div class="col-xs-10 col-sm-8 rowspan">
+                                <span>Fan speed</span>
+                            </div>
+                            <br /><br /><br />
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="0" value="1" id="minFan" />
                                 </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span>Power</span>
+                                <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+                                    <div id="slider-fan"></div>
                                 </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="1" value="1000" id="maxFan" />
                                 </div>
-
-                                <br /><br />
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
-                                </div>
-                                <div class="col-xs-10 col-sm-8 rowspan">
-                                    <span>Operating Voltage</span>
-                                </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-
-                                </div>
+                            </div>
 
 
-                                <br /><br />
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
-                                </div>
-                                <div class="col-xs-10 col-sm-10 rowspan">
-                                    <span>Number of fan speed</span>
-                                </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
 
+                            <br /><br />
+                            <div class="col-xs-10 col-sm-2 rowspan">
+                                <span class="glyphicon glyphicon-sort"></span>
+                            </div>
+                            <div class="col-xs-10 col-sm-10 rowspan">
+                                <span>Fan sweep diameter</span>
+                            </div>
+                            <br /><br /><br />
+                            <div class="row">
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="0" value="100" id="minFanSweep" />
                                 </div>
-
-
-                                <br /><br /><br/>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
+                                <div style="margin-top: 12px;" class="col-sm-6 col-md-6 col-md-6">
+                                    <div id="slider-fanSweep"></div>
                                 </div>
-                                <div class="col-xs-10 col-md-8 rowspan">
-                                    <span>Sound at max speed</span>
+                                <div class="col-sm-3 col-md-3 col-md-3">
+                                    <input type="text" class="form-control slidervalue" data-index="1" value="10000" id="maxFanSweep" />
                                 </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-
-                                </div>
-
-
-                                <br /><br />
-                                <div class="col-xs-10 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
-                                </div>
-                                <div class="col-xs-10 col-sm-10 rowspan">
-                                    <span>Fan sweep diameter</span>
-                                </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-
-                                </div>
-
-
-                                <br /><br /><br />
-                                <div class="col-xs-8 col-sm-2 rowspan">
-                                    <span class="glyphicon glyphicon-sort"></span>
-                                </div>
-                                <div class="col-xs-12 col-sm-8 rowspan">
-                                    <span>weight</span>
-                                </div>
-                                <div class="col-xs-10 col-sm-2 rowspan">
-
-                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 rightpanel">
                         <div class="card">
                             <img src="~/Images/img_avatar.png" class="img-thumbnail img-responsive productImage" alt="Product Image">
                             <div class="cardContainer">
-                                <h4><b>John Doe</b></h4>
-                                <p>Architect & Engineer</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <img src="~/Images/img_avatar.png" class="img-thumbnail img-responsive productImage" alt="Product Image">
-                            <div class="cardContainer">
                                 <div class="prodInfo">
-                                    <p id="fanName">BigAss</p>
+                                    <p id="fanName">product.ProductName</p>
                                     <p id="seriesNum">Haiku H Series</p>
                                     <p id="modelNum">S3150-BC-04-01-C-01</p>
                                 </div>
@@ -233,6 +198,47 @@
                                     <p id="maxSpeed">21.14 W at max speed</p>
                                     <p id="soundAtMaxSpeed">35 dBA at max speed</p>
                                     <p id="fanSpeedDiameter">60 fan sweep diameter</p>
+                                </div>
+                                <br />
+                                <div class="selectbox">
+                                    <input type="checkbox" /><span>Compare</span>
+                                    <button class="btn btn-primary">Add to</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="~/Images/img_avatar.png" class="img-thumbnail img-responsive productImage" alt="Product Image">
+                            <div class="cardContainer">
+                                <div class="prodInfo">
+                                    <p id="fanName">product.ProductName</p>
+                                    <p id="seriesNum">Haiku H Series</p>
+                                    <p id="modelNum">S3150-BC-04-01-C-01</p>
+                                </div>
+                                <br /><br />
+                                <div class="predSpec">
+                                    <p id="airFlow">Operating Voltage</p>
+                                    <p id="maxSpeed">Level of Suction</p>
+                                    <p id="soundAtMaxSpeed">Height</p>
+                                </div>
+                                <br />
+                                <div class="selectbox">
+                                    <input type="checkbox" /><span>Compare</span>
+                                    <button class="btn btn-primary">Add to</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="~/Images/img_avatar.png" class="img-thumbnail img-responsive productImage" alt="Product Image">
+                            <div class="cardContainer">
+                                <div class="prodInfo">
+                                    <p id="fanName">product.ProductName</p>
+                                    <p id="seriesNum">Haiku H Series</p>
+                                    <p id="modelNum">S3150-BC-04-01-C-01</p>
+                                </div>
+                                <br /><br />
+                                <div class="predSpec">
+                                    <p id="airFlow">Operating Voltage</p>
+                                    <p id="maxSpeed">Weight</p>
                                 </div>
                                 <br />
                                 <div class="selectbox">
@@ -254,6 +260,11 @@
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
+               @*var arr = JSON.parse('@Html.Raw(HttpUtility.HtmlDecode(@ViewBag.product))');*@
+                var text = @Html.Raw(Json.Encode(@ViewBag.product));
+              
+                console.log(text.length);
+
                 $("#slider-air").slider({
                     range: true,
                     min: 100,
@@ -262,46 +273,75 @@
                     slide: function (event, ui) {
                         $("#minAir").val(ui.values[0]);
                         $("#maxAir").val(ui.values[1]);
+                        console.log(ui);
+                        console.log(event);
+                }
+                });
+                $("#minair").val($("#slider-air").slider("values", 0));
+                $("#maxair").val($("#slider-air").slider("values", 1));
+
+                $("#slider-powerMax").slider({
+                    range: true,
+                    min: 10,
+                    max: 50,
+                    values: [15, 40],
+                    slide: function (event, ui) {
+                        $("#minPower").val(ui.values[0]);
+                        $("#maxPower").val(ui.values[1]);
                     }
                 });
-                $("#minAir").val($("#slider-air").slider("values", 0));
-                $("#maxAir").val($("#slider-air").slider("values", 1));
+                $("#minPower").val($("#slider-powerMax").slider("values", 0));
+                $("#maxPower").val($("#slider-powerMax").slider("values", 1));
+            });
 
                 $("#slider-fan").slider({
-                    range: true,
-                    min: 1,
-                    max: 1000,
-                    values: [200, 900],
+                range: true,
+                    min: 10,
+                    max: 100,
+                    values: [20, 90],
                     slide: function (event, ui) {
                         $("#minFan").val(ui.values[0]);
                         $("#maxFan").val(ui.values[1]);
-                    }
-                });
+            }
+            });
                 $("#minFan").val($("#slider-fan").slider("values", 0));
                 $("#maxFan").val($("#slider-fan").slider("values", 1));
-            });
+
+                $("#slider-fanSweep").slider({
+                    range: true,
+                    min: 10,
+                    max: 100,
+                    values: [20, 90],
+                    slide: function (event, ui) {
+                        $("#minFanSweep").val(ui.values[0]);
+                        $("#maxFanSweep").val(ui.values[1]);
+                    }
+                });
+                $("#minFanSweep").val($("#slider-fanSweep").slider("values", 0));
+                $("#maxFanSweep").val($("#slider-fanSweep").slider("values", 1));
+            
 
             var ptypeclick = false;
-            var tspecclick = false;
+        var tspecclick = false;
             $('#ptypebtn').on('click', function () {
-                if (ptypeclick == false) {
+            if (ptypeclick == false) {
                     $('#ptypediv').hide();
-                    ptypeclick = true;
-                } else {
+                ptypeclick = true;
+            } else {
                     $('#ptypediv').show();
-                    ptypeclick = false;
-                }
-            }) 
+                ptypeclick = false;
+            }
+        }) 
 
             $('#tspecbtn').on('click', function () {
-                if (tspecclick == false) {
+            if (tspecclick == false) {
                     $('#tspecdiv').hide();
-                    tspecclick = true;
-                } else {
+                tspecclick = true;
+            } else {
                     $('#tspecdiv').show();
-                    tspecclick = false;
-                }
-            })
+                tspecclick = false;
+            }
+        })
 
 
         </script>

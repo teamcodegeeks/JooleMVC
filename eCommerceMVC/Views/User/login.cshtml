@@ -24,22 +24,24 @@
     </div>
 
     <div class="logo">
-        <img src="~/Images/Logo.png" alt="logo" />
+        <img src="~/Images/Logo.png" alt="logo" class="img-responsive" style="margin: auto;"/>
         <p>Building Product Selection Platform</p>
     </div>
 
     <div class="login">
-        <form action="@Url.Action("LoginUser", "User")" method="post" class="form-group">
+        <form action="@Url.Action("LoginUser", "User")" method="post" class="form-group" id="form">
             <p>@ViewData["erroeinfo"]</p>
             <input name="UserName" class="form-control"
                     type="text"
+                   id="username"
                     placeholder="Username or Email" /><span class="fas fa-user loginspan"></span>
             <br />
             <input name="UserPassword" class="form-control"
                    type="password"
+                   id="password"
                    placeholder="Password" /><i class="fas fa-briefcase passspan"></i>
             <br />
-            <input id="Submit1" class="btn btn-primary loginBtn" type="submit" value="Log In" />
+            <input id="submitBtn" class="btn btn-primary loginBtn" type="submit" value="Log In" />
         </form>
     </div>
 
@@ -47,7 +49,6 @@
          data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger"})
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">X</button>
                     <h4 class="modal-title">Register as User</h4>
@@ -57,55 +58,99 @@
                         <div class="form-group">
                             <label for="exampleInputImage">Image Preview</label>
                             <br />
-                            <img src="~/Images/ProfileImages/" class="profileImage" />
+                            <img id="profileImage" class="profileImage" />
                             <br />
                             <label for="exampleInputFile">File input</label>
-                            <input type="file" name="file" id="exampleInputFile">
-                            @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                            <input type="file" name="file" id="exampleInputFile" >
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="text"
                                    placeholder="User Name" name="newusername" id="inputUserName" />
-                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" } )
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="text"
                                    placeholder="Email Id" name="newuseremail" id="inputEmail" />
-                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="Password"
                                    type="password" name="newuserpassword" id="inputPassword" />
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
                             <input class="form-control" placeholder="Confirm Password"
-                                   type="password" id="inputConfirmPassword" />
-@*                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })*@
+                                   type="password" id="inputConfirmPassword"
+                                   name="newuserconfirmpassword"/>
                         </div>
                     </form>
 
-                    @Html.ViewData["Message"]
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" form="newregister">Sign</button>
+                    <button type="submit" class="btn btn-primary" form="newregister">Sign Up</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-            $(document).ready(function () {
-                $(".signupLink").click(function () {
-                    $("#loginModal").modal('show');
-                });
-                $("#btnHideModal").click(function () {
-                    $("#loginModal").modal('hide');
-                });
+        $(document).ready(function () {
+            $("#exampleInputFile").click(function () {
+                $("#profileImage").attr('src', '/Images/img_avatar.png');
+            })
+
+            $("#form").validate({
+                rules: {
+                    UserName: 'required',
+                    UserPassword: 'required',
+                },
+                messages: {
+                    UserName: 'This fiels is required!',
+                    UserPassword: 'This field is required!'
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
             });
+
+            $("#newregister").validate({
+                rules: {
+                    file: 'required',
+                    newusername: 'required',
+                    newuseremail: {
+                        required: true,
+                        email: true,
+                        maxlength: 255,
+                    },
+                    newuserpassword: {
+                        required: true,
+                        minlength: 5,
+                    },
+                    newuserconfirmpassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#inputPassword"
+                    }
+                },
+                messages: {
+                    file: 'Please select profile image!',
+                    newusername: 'Please enter username!',
+                    newuseremail: 'Please enter email!',
+                    newuserpassword: 'Please enter password!',
+                    newuserconfirmpassword: 'Please enter confirm password!'
+                },
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            })
+            $(".signupLink").click(function () {
+                $("#loginModal").modal('show');
+            });
+            $("#btnHideModal").click(function () {
+                $("#loginModal").modal('hide');
+            });
+        });
     </script>
 </body>
 </html>

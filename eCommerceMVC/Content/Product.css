@@ -16,6 +16,28 @@ body {
     text-align: center;
 }
 
+@media only screen and (max-width: 770px) {
+    .imagelogo {
+        margin: auto;
+    }
+
+    .customstylenav {
+        height: 15%;
+    }
+
+    .navform {
+        display: none;
+    }
+
+    .imageprofile {
+        display: none;
+    }
+
+    .leftpanel {
+        display: none;
+    }
+}
+
 .navform {
     margin-left: 34%;
     margin-top: 40px;
@@ -46,6 +68,12 @@ body {
     background-color: white;
     display: inline-flex;
     flex-direction: row;
+}
+
+@media only screen and (max-width: 735px) {
+    .rightpanel {
+        flex-direction: column;
+    }
 }
 
 .rows {
@@ -81,6 +109,19 @@ body {
     border-radius: 5px; /* 5px rounded corners */
     width: 25%;
     margin: 5px 5px;
+}
+
+@media only screen and (max-width: 980px) {
+    .card {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .card {
+        margin: auto;
+        width: 100%;
+    }
 }
 
 .card:hover {
